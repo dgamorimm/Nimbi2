@@ -1,13 +1,18 @@
 from selenium import webdriver
 from modelo.login import User
 from modelo.requisicao import Requisicao
+from processador.log import Logger
 from openpyxl import load_workbook
 from selenium.common.exceptions import NoSuchElementException
 import os
 import shutil
 from time import sleep
 
+logger = Logger().get()
+logger.info('Teste - Automação NIMBI')
+
 path_file = "c:\\Nimbi\\Requisição"
+#logger.info('\n01 - Passou - Teste')
 
 prefs = {"safebrowsing.enabled": True}
 prefs2 = {"download.default_directory": path_file}
