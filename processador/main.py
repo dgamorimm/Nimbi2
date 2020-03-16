@@ -26,6 +26,7 @@ options.add_argument("start-maximized")
 options.add_argument("--no-sandbox")
 #options.add_argument("headless") - Ambos servem para rodar em background
 #options.add_argument("disable-gpu")
+#options.binary_location = "C:\\Users\\douglas.pinheiro\\AppData\\Local\\Google\\Chrome SxS\\Application\\chrome.exe"
 options.add_experimental_option("prefs", prefs)
 bot = webdriver.Chrome(options=options, port=5556)
 
