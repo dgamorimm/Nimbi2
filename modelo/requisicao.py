@@ -7,6 +7,7 @@ visibility_of_element_located, presence_of_element_located_s
 from time import sleep
 import os
 
+
 class Requisicao:
     def __init__(self, driver):
         self.driver = driver
@@ -17,9 +18,6 @@ class Requisicao:
         # Selecionar o status
         self.CLICK_STATUS = (By.NAME,"REQUISITION_STATUS_NAME" )#"x-auto-1555-input")
         self.LISTA_STATUS = (By.CLASS_NAME,"x-combo-list-item ")
-        # criado por todos
-        #self.CLICK_CRIADOPOR = (By.TAG_NAME,"input[name='REQUISITION_CREATED_BY_NAME']")
-        #self.BTN_CRIADOPOR_TODOS = (By.TAG_NAME,"label[name='0'][title='Todos']")
         # limpar criação de data
         self.IN_DATAINIT = (By.ID, "start-date-input")
         # buscar
@@ -27,11 +25,10 @@ class Requisicao:
         # entrando pelo icone de folder
         self.CLICK_ENTRAR = (By.NAME,"REQUISITION_OPEN_IMAGE_0_10_NAME")
         # clicando no icone de anexo
-        #self.ANEXOS = (By.TAG_NAME,"img[src='skin-webb/img/anexo_vazio.gif'][title='Anexos']")
-        #self.ANEXOS = (By.XPATH,"//img[@src='skin-webb/img/anexo_vazio.gif'][@title='Anexos']")
         self.ANEXOS = (By.CLASS_NAME,"x-grid3-col-ATTACHMENT_CLIP")
         # fazendo o download
-        self.ENTER_BAIXAR = (By.CSS_SELECTOR,"td:nth-child(1) > div > table > tbody > tr:nth-child(1) > td > div > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(2) > td.x-btn-mc > em > button[type='button']")#"x-window-body")#(By.ID,"x-auto-6061")
+        # funciona self.ENTER_BAIXAR = (By.CSS_SELECTOR,"td:nth-child(1) > div > table > tbody > tr:nth-child(1) > td > div > table > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(2) > td.x-btn-mc > em > button[type='button']")#"x-window-body")#(By.ID,"x-auto-6061")
+        self.ENTER_BAIXAR = (By.XPATH,"//*[@class=' x-btn webb-icon-button4 x-component  x-btn-text-icon x-item-disabled x-unselectable']/tbody/tr[2]/td[2]/em/button")
         self.VALIDAR_ANEXO = (By.CSS_SELECTOR, "td > div > div.x-panel-bwrap > div.x-panel-body.x-panel-body-noheader.x-form-label-left > div:nth-child(2) > div.x-edit-grid.x-grid-panel.x-component.x-border > div.x-grid3 > div.x-grid3-viewport > div.x-grid3-scroller > div > div")
         self.FECHAR_ANEXO = (By.CSS_SELECTOR,"div.x-window-tl > div > div > div > div > table > tbody > tr > td > div")
 
@@ -39,14 +36,6 @@ class Requisicao:
         self.ANEXOS_SEC = (By.XPATH,"//div[@class='webb-req-search-fields-panel-label webb-cart-item-label webb-left x-component']")
         self.CLICK_INICIO = (By.ID,"home-tab")
 
-        "#x-auto-16291 > tbody > tr:nth-child(2) > td.x-btn-mc > em"
-        "#x-auto-16735 > tbody > tr:nth-child(2) > td.x-btn-mc > em > button"
-
-        "#x-auto-16734 > tbody > tr:nth-child(2) > td.x-btn-ml"
-        "#x-auto-16745"
-        # x-auto-16736 > table > tbody > tr > td:nth-child(3)
-        "#x-auto-16736 > table > tbody > tr > td:nth-child(2)"
-        "div#requisition-tab"
         ############################################################################################
 
         pass
@@ -87,6 +76,14 @@ class Requisicao:
             print(x)
             sleep(5)
             return self.validar_click_reduce(clique_certo)
+
+    def validar_click_imediato(self,clique_certo = None):
+        try:
+            clique_certo.click()
+        except IOError as x:
+            print(x)
+            sleep(5)
+            return self.validar_click_imediato(clique_certo)
 
 
     def buscar_requisicao(self,id,status):
@@ -135,53 +132,43 @@ class Requisicao:
 
     def download_guia_anexos(self):
         #anexo na guia de anexo
-        driver = self.driver
         try:
-            self.validar_click_reduce(self.ENTER_BAIXAR)
+            botao = self.finds(self.ENTER_BAIXAR)
+            self.validar_click_imediato(botao[1])
             sleep(2)
-            self.find_reduce(self.ENTER_BAIXAR).send_keys(Keys.TAB + Keys.ENTER)
+            botao[1].send_keys(Keys.TAB + Keys.ENTER)
             sleep(1)
             while True:
-                if os.path.exists("C:/Nimbi/Requisição/anexos.zip"):
+                if os.path.exists('C:/Nimbi/Downloads/anexos (1).zip') or os.path.exists('C:/Nimbi/Downloads/anexos.zip'):
                     sleep(1)
-                    driver.refresh()
                     sleep(3)
                     break
         except NoSuchElementException as x:
             print(x)
-            driver.refresh()
             sleep(3)
 
 
     def download_guia_itens(self):
-        sleep(3)
-        driver = self.driver
-        # anexo na guia de item
-        anexs = self.finds(self.ANEXOS)
-        for self.anex in anexs:
-            id_anexo_texto = self.anex.text
-            if id_anexo_texto != "":
-                self.anex.click()
-                sleep(1)
-                anexo = self.find(self.VALIDAR_ANEXO)
-                if anexo.text != " ":
-                    self.validar_click(self.ENTER_BAIXAR)
-                    sleep(2)
-                    try:
-                        self.find(self.ENTER_BAIXAR).send_keys(Keys.TAB + Keys.ENTER)
-                        sleep(1)
-                        while True:
-                            if os.path.exists("C:/Nimbi/Requisição/anexos.zip"):
-                                sleep(1)
-                                self.validar_click_reduce(self.FECHAR_ANEXO)
-                                sleep(3)
-                                break
-                    except:
-                        driver.refresh()
-                        return sleep(3)
-                else:
-                    driver.refresh()
+        sleep(2)
+        botao = self.finds(self.ENTER_BAIXAR)
+        try:
+            self.validar_click_imediato(botao[5])
+            botao[5].send_keys(Keys.TAB + Keys.ENTER)
+            sleep(1)
+            while True:
+                if os.path.exists('C:/Nimbi/Downloads/anexos.zip'):
+                    sleep(1)
+                    self.validar_click_reduce(self.FECHAR_ANEXO)
                     sleep(3)
-        driver.refresh()
-        sleep(3)
+                    break
+        except:
+            self.validar_click_imediato(botao[3])
+            botao[3].send_keys(Keys.TAB + Keys.ENTER)
+            sleep(1)
+            while True:
+                if os.path.exists('C:/Nimbi/Downloads/anexos.zip'):
+                    sleep(1)
+                    self.validar_click_reduce(self.FECHAR_ANEXO)
+                    sleep(3)
+                    break
 

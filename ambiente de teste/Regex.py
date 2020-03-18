@@ -33,3 +33,8 @@ if (x):
   print("4. Sim, a cadeia começa com 'hello'")
 else:
   print("4. Sem correspondência")
+
+
+txt = "anexos"
+
+re.sub()

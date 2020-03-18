@@ -1,7 +1,52 @@
-16/03/2020 03:28:01 PM INFO: Test Propert
-16/03/2020 03:28:03 PM INFO: 
-01 - Passed - Propert_test.py
-16/03/2020 03:42:57 PM INFO: Teste - Automação NIMBI
-16/03/2020 03:44:26 PM INFO: Teste - Automação NIMBI
-16/03/2020 03:45:20 PM INFO: Teste - Automação NIMBI
-16/03/2020 03:45:36 PM INFO: Teste - Automação NIMBI
+18/03/2020 04:51:00 PM INFO: log ON
+18/03/2020 04:51:00 PM INFO: Variavel = path_file ------> Passando caminho para download
+18/03/2020 04:51:00 PM INFO: Variavel = prefs ------> Passando dicionario de preferência de download sem confirmação
+18/03/2020 04:51:00 PM INFO: Variavel = prefs2 ------> Passando dicionario de preferencia de download no caminho da variavel path file
+18/03/2020 04:51:00 PM INFO: Funcao = prefs.update(prefs2) ------> Atualizando a variavel prefs, passando o dicionario prefs2
+18/03/2020 04:51:00 PM INFO: Variavel = options ------> Passando o webdriver das opções de driver do Google Chrome
+18/03/2020 04:51:00 PM INFO: Funcao = options.add_argument('-incognito') ------> Adicionando o argumento a options do drive do Google
+18/03/2020 04:51:00 PM INFO: Funcao = options.add_argument('--disable-dev-shm-usage') ------> Adicionando o argumento a options do drive do Google
+18/03/2020 04:51:00 PM INFO: Funcao = options.add_argument('start-maximized')------> Adicionando o argumento a options do drive do Google
+18/03/2020 04:51:00 PM INFO: Funcao = options.add_argument('--no-sandbox')------> Adicionando o argumento a options do drive do Google
+18/03/2020 04:51:00 PM INFO: Funcao = options.add_experimental_option('prefs', prefs)------> Adicionando o argumento a options do drive do Google
+18/03/2020 04:51:01 PM INFO: Variavel = bot ------> Instanciando o driver do Google
+18/03/2020 04:51:06 PM INFO: Funcao = bot.get ------> Abrindo a pagina da NIMBI
+18/03/2020 04:51:06 PM INFO: Classe = usuario ------> Instaciando a Classe User
+18/03/2020 04:51:20 PM INFO: Funcao = usuario.logar ------> Colocando usuário e senha nos argumentos
+18/03/2020 04:51:20 PM INFO: Classe = req  ------> Instaciando a Classe Requisicao
+18/03/2020 04:51:20 PM INFO: Variavel = caminho  ------> Passando o caminho da planilha com as requisicoes
+18/03/2020 04:51:20 PM INFO: Variavel = arquivo_excel  ------> Carregando a planilha in memory
+18/03/2020 04:51:20 PM INFO: Variavel = planilha1  ------> Ativando o sheet ( ' Planilha1 ')
+18/03/2020 04:51:20 PM INFO: Variavel = qtd_line  ------> Contando a quantidade linhas com celulas preenchidas
+18/03/2020 04:51:20 PM INFO: Variavel = s_id_req  ------> Passando o valor da celula A2
+18/03/2020 04:51:20 PM INFO: Variavel = s_id_req  ------> Passando o valor da celula C2
+18/03/2020 04:51:20 PM INFO: Funcao = req.buscar_requisicao(s_id_req, s_status_req) ------> Ativada
+18/03/2020 04:51:36 PM INFO: Funcao = req.buscar_requisicao(s_id_req, s_status_req) ------> Concluida
+18/03/2020 04:51:41 PM INFO: Variavel = dir_origem ------> Passando o caminho da origem dos downloads
+18/03/2020 04:51:41 PM INFO: Variavel = dir_destino ------> Destino dos downloads
+18/03/2020 04:51:41 PM INFO: Variavel = anexs ------> Ativada
+18/03/2020 04:51:41 PM INFO: Funcao = req.download_guia_itens() ------> Ativada
+18/03/2020 04:52:06 PM INFO: Funcao = req.download_guia_itens() ------> Concluida
+18/03/2020 04:52:07 PM INFO: Variavel = anexs ------> Concluida
+18/03/2020 04:52:09 PM INFO: Variavel = s_id_req  ------> Passando o valor da celula A2
+18/03/2020 04:52:09 PM INFO: Variavel = s_id_req  ------> Passando o valor da celula C2
+18/03/2020 04:52:09 PM INFO: Funcao = req.buscar_requisicao(s_id_req, s_status_req) ------> Ativada
+18/03/2020 04:52:29 PM INFO: Funcao = req.buscar_requisicao(s_id_req, s_status_req) ------> Concluida
+18/03/2020 04:52:34 PM INFO: Variavel = dir_origem ------> Passando o caminho da origem dos downloads
+18/03/2020 04:52:34 PM INFO: Variavel = dir_destino ------> Destino dos downloads
+18/03/2020 04:52:34 PM INFO: Variavel = anexs ------> Ativada
+18/03/2020 04:52:35 PM INFO: Funcao = req.download_guia_itens() ------> Ativada
+18/03/2020 04:52:45 PM INFO: Funcao = req.download_guia_itens() ------> Concluida
+18/03/2020 04:52:46 PM INFO: Variavel = anexs ------> Concluida
+18/03/2020 04:52:46 PM INFO: Funcao =  req.download_guia_anexos() ------> Ativada
+18/03/2020 04:52:59 PM INFO: Funcao =  req.download_guia_anexos() ------> Concluida
+18/03/2020 04:53:01 PM INFO: Variavel = s_id_req  ------> Passando o valor da celula A2
+18/03/2020 04:53:01 PM INFO: Variavel = s_id_req  ------> Passando o valor da celula C2
+18/03/2020 04:53:01 PM INFO: Funcao = req.buscar_requisicao(s_id_req, s_status_req) ------> Ativada
+18/03/2020 04:53:17 PM INFO: Funcao = req.buscar_requisicao(s_id_req, s_status_req) ------> Concluida
+18/03/2020 04:53:22 PM INFO: Variavel = dir_origem ------> Passando o caminho da origem dos downloads
+18/03/2020 04:53:22 PM INFO: Variavel = dir_destino ------> Destino dos downloads
+18/03/2020 04:53:22 PM INFO: Variavel = anexs ------> Ativada
+18/03/2020 04:53:22 PM INFO: Variavel = anexs ------> Concluida
+18/03/2020 04:53:22 PM INFO: Funcao =  req.download_guia_anexos() ------> Ativada
+18/03/2020 04:54:20 PM INFO: Funcao =  req.download_guia_anexos() ------> Concluida
